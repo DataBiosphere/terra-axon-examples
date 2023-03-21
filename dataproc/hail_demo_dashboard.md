@@ -2,18 +2,18 @@
 
 This workspace shows how to start a [Dataproc](https://cloud.google.com/dataproc) (managed Spark) cluster, with Hail installed, on Enterprise Terra, and how to submit batch jobs to the cluster as well as how to run an interactive notebook on the Hail cluster.
 
-It uses an example that annotates significant GWAS results with gnomAD using [Hail](https://hail.is/).  
+It uses an example that annotates significant GWAS results with gnomAD using [Hail](https://hail.is/).
 
 The example specifically annotates GWAS results from the paper [*Whole genome sequence analysis of blood lipid levels in >66,000 individuals. Selvaraj et al 2021*](https://www.biorxiv.org/content/10.1101/2021.10.11.463514v1.supplementary-material). There are only 338 significant LDL results to annotate, so it might be faster to annotate using a tool other than Hail, but this workspace is meant to be illustrative and run on publicly available data.
 
 # How do I get started?
 
-*Duplicate* this workspace. You can do that via the 'three-dot' menu in the upper right of the workspace. 
+*Duplicate* this workspace. You can do that via the 'three-dot' menu in the upper right of the workspace.
 
 
 ## Step 1: Preview prior runs of the relevant notebooks.
 
-On the 'Resources' page, navigate to TVC folder "Notebook snapshots" and preview the notebooks you see there in this order to get a deeper understanding of what setup and analysis this demonstration workspace enables:
+On the 'Resources' page, navigate to the Enterprise Terra folder "Notebook snapshots" and preview the notebooks you see there in this order to get a deeper understanding of what setup and analysis this demonstration workspace enables:
 1. `workspace_setup.ipynb` (This notebook was run as part of the "Hail Demo" workspace creation, and you do not need to run it again in your duplicated workspace).
 2. `create_hail_cluster.ipynb`
 3. `annotate_significant_gwas_results_with_gnomad_brief.ipynb`, which was run on a small region of the genome
