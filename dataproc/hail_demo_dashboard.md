@@ -12,7 +12,7 @@ The example specifically annotates GWAS results from the paper [*Whole genome se
 
 - In the Enterprise Terra UI, click on your profile icon, then click on "My Profile". Copy the public SSH key listed there.
   Then, [add that key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) to your GitHub account.
-  This page: https://terra-docs.api.verily.com/docs/how_to_guides/terra_ssh_key_guide/ has more detail.
+  [This page](https://terra-docs.api.verily.com/docs/how_to_guides/terra_ssh_key_guide/) has more detail.
 
   This setup allows the `terra-axon-examples` example repo, which you can see listed as a Git repository for the workflow, to be automatically cloned when you create a Cloud Environment.
   > **Note**: if you do not have a GitHub account, then you can clone the repo manually after you've created the Cloud Environment.
