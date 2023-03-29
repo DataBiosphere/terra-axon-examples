@@ -1,0 +1,12 @@
+{
+    "CramToBamFlow.CramToBamTask.InputCram":"gs://terra-featured-workspaces/QuickStart/my-test-data.cram",
+    "CramToBamFlow.CramToBamTask.RefDict":"gs://gcp-public-data--broad-references/hg38/v0/Homo_sapiens_assembly38.dict",
+    "CramToBamFlow.CramToBamTask.RefFasta":"gs://gcp-public-data--broad-references/hg38/v0/Homo_sapiens_assembly38.fasta",
+    "CramToBamFlow.CramToBamTask.RefIndex":"gs://gcp-public-data--broad-references/hg38/v0/Homo_sapiens_assembly38.fasta.fai",
+    "CramToBamFlow.CramToBamTask.SampleName":"my_sample",
+    "CramToBamFlow.ValidateSamFile.preemptible_tries":3,
+    "CramToBamFlow.cram_to_bam_disk_size":200,
+    "CramToBamFlow.cram_to_bam_mem_size":"15 GB",
+    "CramToBamFlow.validate_sam_file_disk_size":200,
+    "CramToBamFlow.validate_sam_file_mem_size":"3500 MB"
+}
