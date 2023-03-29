@@ -63,9 +63,9 @@ output {
 #Task Definitions
 task CramToBamTask {
 
-File RefFasta
-File RefIndex
-File RefDict
+File RefFasta = "gs://gcp-public-data--broad-references/hg38/v0/Homo_sapiens_assembly38.fasta"
+File RefIndex = "gs://gcp-public-data--broad-references/hg38/v0/Homo_sapiens_assembly38.fasta.fai"
+File RefDict = "gs://gcp-public-data--broad-references/hg38/v0/Homo_sapiens_assembly38.dict"
 File InputCram
 #File InputCrai
 String SampleName
