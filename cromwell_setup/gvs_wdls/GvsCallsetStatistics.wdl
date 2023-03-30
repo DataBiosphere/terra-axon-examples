@@ -11,6 +11,7 @@ workflow GvsCallsetStatistics {
         String metrics_table = "~{extract_prefix}_sample_metrics"
         String aggregate_metrics_table = "~{extract_prefix}_sample_metrics_aggregate"
         String statistics_table = "~{extract_prefix}_statistics"
+        String bq_location = "US"
     }
 
     call Utils.ValidateFilterSetName {
@@ -40,7 +41,8 @@ workflow GvsCallsetStatistics {
                 filter_set_name = filter_set_name,
                 extract_prefix = extract_prefix,
                 metrics_table = metrics_table,
-                chromosome = chrom + 1 # 0-based ==> 1-based
+                chromosome = chrom + 1, # 0-based ==> 1-based
+                bq_location = bq_location
         }
     }
 
@@ -52,7 +54,8 @@ workflow GvsCallsetStatistics {
             filter_set_name = filter_set_name,
             extract_prefix = extract_prefix,
             metrics_table = metrics_table,
-            aggregate_metrics_table = aggregate_metrics_table
+            aggregate_metrics_table = aggregate_metrics_table,
+            bq_location = bq_location
     }
 
     call CollectStatistics {
@@ -64,7 +67,8 @@ workflow GvsCallsetStatistics {
             extract_prefix = extract_prefix,
             metrics_table = metrics_table,
             aggregate_metrics_table = aggregate_metrics_table,
-            statistics_table = statistics_table
+            statistics_table = statistics_table,
+            bq_location = bq_location
     }
 
     call ExportToCSV {
@@ -283,6 +287,7 @@ task CollectMetricsForChromosome {
         String extract_prefix
         String metrics_table
         Int chromosome
+        String bq_location
     }
     meta {
         # This table is expected to exist and be empty. Always run to confirm it wasn't externally deleted, and don't
@@ -294,7 +299,7 @@ task CollectMetricsForChromosome {
 
         echo "project_id = ~{project_id}" > ~/.bigqueryrc
 
-        bq query --location=US --project_id=~{project_id} --format=csv --use_legacy_sql=false '
+        bq query --location=~{bq_location} --project_id=~{project_id} --format=csv --use_legacy_sql=false '
             SELECT COUNT(*) from `~{project_id}.~{dataset_name}.~{metrics_table}` WHERE chromosome = ~{chromosome}
         ' | sed 1d > existing_row_count.txt
 
@@ -305,7 +310,7 @@ task CollectMetricsForChromosome {
             exit 1
         fi
 
-        bq query --location=US --project_id=~{project_id} --use_legacy_sql=false '
+        bq query --location=~{bq_location} --project_id=~{project_id} --use_legacy_sql=false '
         CREATE TEMPORARY FUNCTION titv(ref STRING, allele STRING)
         RETURNS STRING
             LANGUAGE js AS """
@@ -414,6 +419,7 @@ task AggregateMetricsAcrossChromosomes {
         String extract_prefix
         String metrics_table
         String aggregate_metrics_table
+        String bq_location
     }
     meta {
         # This table is expected to exist and be empty. Always run to confirm it wasn't externally deleted, and don't
@@ -423,7 +429,7 @@ task AggregateMetricsAcrossChromosomes {
     command <<<
         set -o errexit -o nounset -o xtrace -o pipefail
 
-        bq query --location=US --project_id=~{project_id} --format=csv --use_legacy_sql=false '
+        bq query --location=~{bq_location} --project_id=~{project_id} --format=csv --use_legacy_sql=false '
             SELECT COUNT(*) from `~{project_id}.~{dataset_name}.~{aggregate_metrics_table}`
         ' | sed 1d > existing_row_count.txt
 
@@ -434,7 +440,7 @@ task AggregateMetricsAcrossChromosomes {
             exit 1
         fi
 
-        bq query --location=US --project_id=~{project_id} --use_legacy_sql=false '
+        bq query --location=~{bq_location} --project_id=~{project_id} --use_legacy_sql=false '
         INSERT `~{project_id}.~{dataset_name}.~{aggregate_metrics_table}` (
             filter_set_name,
             sample_id,
@@ -486,6 +492,7 @@ task CollectStatistics {
         String metrics_table
         String aggregate_metrics_table
         String statistics_table
+        String bq_location
     }
     meta {
         # This table is expected to exist and be empty. Always run to confirm it wasn't externally deleted, and don't
@@ -495,7 +502,7 @@ task CollectStatistics {
     command <<<
         set -o errexit -o nounset -o xtrace -o pipefail
 
-        bq query --location=US --project_id=~{project_id} --format=csv --use_legacy_sql=false '
+        bq query --location=~{bq_location} --project_id=~{project_id} --format=csv --use_legacy_sql=false '
             SELECT COUNT(*) from `~{project_id}.~{dataset_name}.~{statistics_table}`
         ' | sed 1d > existing_row_count.txt
 
@@ -506,7 +513,7 @@ task CollectStatistics {
             exit 1
         fi
 
-        bq query --location=US --project_id=~{project_id} --format=csv --use_legacy_sql=false '
+        bq query --location=~{bq_location} --project_id=~{project_id} --format=csv --use_legacy_sql=false '
         INSERT `~{project_id}.~{dataset_name}.~{statistics_table}` (
             sample_id,
             sample_name,
