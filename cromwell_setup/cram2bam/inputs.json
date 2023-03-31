@@ -1,9 +1,5 @@
 {
     "CramToBamFlow.CramToBamTask.InputCram":"gs://terra-featured-workspaces/QuickStart/my-test-data.cram",
     "CramToBamFlow.CramToBamTask.SampleName":"my_sample",
-    "CramToBamFlow.ValidateSamFile.preemptible_tries":3,
-    "CramToBamFlow.cram_to_bam_disk_size":200,
-    "CramToBamFlow.cram_to_bam_mem_size":"15 GB",
-    "CramToBamFlow.validate_sam_file_disk_size":200,
-    "CramToBamFlow.validate_sam_file_mem_size":"3500 MB"
+    "CramToBamFlow.validate_sam_file_disk_size":200
 }

@@ -25,10 +25,10 @@
 ##
 #WORKFLOW DEFINITION
 workflow CramToBamFlow {
-Int cram_to_bam_disk_size
-Int validate_sam_file_disk_size
-String cram_to_bam_mem_size
-String validate_sam_file_mem_size
+Int? cram_to_bam_disk_size = 200
+Int validate_sam_file_disk_size = 200
+String? cram_to_bam_mem_size = "15 GB"
+String? validate_sam_file_mem_size = "3500 MB"
 
 String? gotc_docker_override
 String gotc_docker = select_first([gotc_docker_override, "broadinstitute/genomes-in-the-cloud:2.3.1-1500064817"])
@@ -111,7 +111,7 @@ task ValidateSamFile {
   String output_name = basename(input_bam, ".bam") + ".validation_report"
   Int disk_size
   String mem_size
-  Int preemptible_tries
+  Int preemptible_tries = 3
   String docker_image
 
   command {
