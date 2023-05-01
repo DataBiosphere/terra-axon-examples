@@ -39,4 +39,4 @@ environment to accelerate discoveries.
 1. Run the notebook
    [cloud_env_setup.ipynb](https://github.com/DataBiosphere/terra-axon-examples/blob/main/cloud_env_setup.ipynb)
    for each cloud environment that you create. It does some useful git and virtual environment
-   configuration.
+   configuration. You may find it useful to add your own environment config to this notebook as well.
