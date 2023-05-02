@@ -29,7 +29,10 @@ environment to accelerate discoveries.
 1. Create a personal workspace where you can run examples, including the ones in this repo. Name it something like *"Personal workspace {your email address} {YYYYMMDD}"*.
 1. [Optional] If you want Terra to clone this repo automatically, [add it as a reference in your
    workspace](https://terra-docs.api.verily.com/docs/how_to_guides/add_repo_to_ws/). Otherwise, you
-   can clone it manually, which is straightfoward.
+   can clone it manually:
+   ```sh
+   git clone https://github.com/DataBiosphere/terra-axon-examples.git
+   ```
 1. Create a Cloud Environment for yourself. Name it something like *"{your email address}-{YYYYMMDD}"*.
 1. Be sure to run the notebook
    [workspace_setup.ipynb](https://github.com/DataBiosphere/terra-axon-examples/blob/main/workspace_setup.ipynb)
