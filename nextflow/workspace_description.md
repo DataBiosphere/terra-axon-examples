@@ -17,7 +17,7 @@ This notebook shows how to get started with [Nextflow](https://www.nextflow.io) 
 
 ## Step 1: Preview prior runs of the relevant notebooks.
 
-Previews of this notebook, including outputs, are provided in the workspace resource folder "Notebook snapshots". Click the links listed below to view notebook previews in order to gain a better understanding of the setup and analysis included in this demonstration workspace:
+Previews of this notebook, including outputs, are provided in the "Notebook snapshots" folder found by navigating to this workspace's Resources tab. Click the links listed below to view notebook previews in order to gain a better understanding of the setup and analysis included in this demonstration workspace:
 
 1. [Workspace setup](https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/97ce452a-dd3c-4045-97d3-bc70db429f83/notebook_snapshots/workspace_setup.html)
 2. [Example 1: Run a Nextflow workflow](https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/21ffa484-75b9-46ff-b70d-6ebeb2962eb2/notebook_snapshots/nextflow_examples_first_exercise_fully_executed.html)
@@ -38,7 +38,8 @@ Launch the environment once it's running, and then run the notebook [workspace_s
 
 ## Step 3: Run the Nextflow examples.
 
-Two examples are provided in `nextflow_examples.ipynb`. You will find this notebook in [https://github.com/DataBiosphere/terra-axon-examples/tree/main/nextflow](https://github.com/https://github.com/DataBiosphere/terra-axon-examples/tree/main/nextflow).  As mentioned above, its repo, `terra-axon-examples`, will be automatically cloned to your Enterprise Terra Cloud Environment, and you should be able to navigate to the notebook in the JupyterLab file browser.
+Two examples are provided in `nextflow_examples.ipynb`. You will find this notebook in [https://github.com/DataBiosphere/terra-axon-examples/tree/main/nextflow](https://github.com/https://github.com/DataBiosphere/terra-axon-examples/tree/main/nextflow).  As mentioned above, its repo, `terra-axon-examples`, will be automatically cloned to your Enterprise Terra Cloud Environment, and you should be able to navigate to the notebook in the JupyterLab file browser. Before running either example, you'll need to run the Setup section.
+
 - The first example demonstrates running a Nextflow RNASeq workflow on human gut data.
 - The second example demonstrates running the (`nf-core`)[https://nf-co.re/]RNASeq pipeline on yeast genome data.
 
