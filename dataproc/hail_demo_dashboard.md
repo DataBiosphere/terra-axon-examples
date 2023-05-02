@@ -8,17 +8,13 @@ The example specifically annotates GWAS results from the paper [*Whole genome se
 
 # How do I get started?
 
-## Step 0: Set up your github SSH key and _Duplicate_ this workspace
+## Step 0: Set up your github SSH key (optional) and _Duplicate_ this workspace
 
-- In the Enterprise Terra UI, click on your profile icon, then click on "My Profile". Copy the public SSH key listed there.
-  Then, [add that key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) to your GitHub account.
-  [This page](https://terra-docs.api.verily.com/docs/how_to_guides/terra_ssh_key_guide/) has more detail.
-
-  This setup allows the `terra-axon-examples` example repo, which you can see listed as a Git repository for the workflow, to be automatically cloned when you create a Cloud Environment.
-  > **Note**: if you do not have a GitHub account, then you can clone the repo manually after you've created the Cloud Environment.
+- (Optional) In the Enterprise Terra UI, click on your profile icon, then click on "My Profile". Copy the public SSH key listed there.
+  Then, [add that key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) to your GitHub account. This is not necessary to run the Dataproc example notebooks, but will allow you to clone private repos from your workspace cloud environments.
+  [This page](https://terra-docs.api.verily.com/docs/how_to_guides/terra_ssh_key_guide/) has more detail on the process.
 
 - Then, *Duplicate* this workspace. You can do that via the 'three-dot' menu in the upper right of the workspace.
-
 
 
 ## Step 1: Preview prior runs of the relevant notebooks.
@@ -39,7 +35,7 @@ Launch the environment once it's running, and then run the notebooks [workspace_
 
 The example repo, `terra-axon-examples`, which is defined as a workspace Git repository, should be automatically cloned to your Enterprise Terra Cloud Environments, and you should be able to navigate to the notebook in the JupyterLab file browser. Look for the `terra-axon-examples` subdirectory.
 
-> **If you have not set up your ssh key, and do not see the `terra-axon-examples` subdirectory**, first open a Terminal window on the notebook server (under the **File** menu) and run:
+> **If you do not see the `terra-axon-examples` subdirectory**, first open a Terminal window on the notebook server (under the **File** menu) and run:
 
   ```sh
   git clone https://github.com/DataBiosphere/terra-axon-examples.git
