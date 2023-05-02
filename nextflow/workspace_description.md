@@ -4,24 +4,22 @@ This notebook shows how to get started with [Nextflow](https://www.nextflow.io) 
 
 # How do I get started?
 
-## Step 0: Set up your github SSH key and _Duplicate_ this workspace
+## Step 0: _Duplicate_ this workspace
 
-- In the Enterprise Terra UI, click on your profile icon, then click on "My Profile". Copy the public SSH key listed there.
-  Then, [add that key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) to your GitHub account.
-  [This page](https://terra-docs.api.verily.com/docs/how_to_guides/terra_ssh_key_guide/) has more detail.
+- *Duplicate* this workspace. You can do that via the 'three-dot' menu in the upper right of the workspace. Duplicating this workspace ensures three Git repositories required for these examples will be automatically cloned when you create a Cloud Environment.
 
-  This setup allows the `terra-axon-examples` example repo, which you can see listed as a Git repository for the workflow, to be automatically cloned when you create a Cloud Environment.
-  > **Note**: if you do not have a GitHub account, then you can clone the repo manually after you've created the Cloud Environment.
-
-- Then, *Duplicate* this workspace. You can do that via the 'three-dot' menu in the upper right of the workspace.
-
+   The required repositories which will be cloned include:
+  1. (`terra-axon-examples` example repo)[https://github.com/DataBiosphere/terra-axon-examples]: Contains JupyterLab notebook `nextflow_examples.ipynb` which demonstrates how to configure and run Nextflow workflows in Enterprise Terra.
+  2. (`rnaseq-nf` repo)[https://github.com/nextflow-io/rnaseq-nf]: Contains a Nextflow RNASeq workflow specification and associated human genomic input data.
+  3. (`test-datasets` repo)[https://github.com/nf-core/test-datasets]: For each workflow in the `nf-core` collection, this repo has a branch with appropriate, workflow-specific test data.
+  > **Note**: If you do not have a GitHub account, then you can clone each repo manually after you've created the Cloud Environment.
 
 
 ## Step 1: Preview prior runs of the relevant notebooks.
 
 Previews of this notebook, including outputs, are provided in the workspace resource folder "Notebook snapshots". Click the links listed below to view notebook previews in order to gain a better understanding of the setup and analysis included in this demonstration workspace:
 
-1. [Workspace setup] (https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/97ce452a-dd3c-4045-97d3-bc70db429f83/notebook_snapshots/workspace_setup.html)
+1. [Workspace setup](https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/97ce452a-dd3c-4045-97d3-bc70db429f83/notebook_snapshots/workspace_setup.html)
 2. [Example 1: Run a Nextflow workflow](https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/21ffa484-75b9-46ff-b70d-6ebeb2962eb2/notebook_snapshots/nextflow_examples_first_exercise_fully_executed.html)
 3. [Example 2: Run an `nf-core` workflow](https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/eebc2df6-fc9d-491e-874c-b87dbd3a68e1/notebook_snapshots/nextflow_examples_second_exercise_fully_executed.html)
 
@@ -42,7 +40,7 @@ Launch the environment once it's running, and then run the notebook [workspace_s
 
 Two examples are provided in `nextflow_examples.ipynb`. You will find this notebook in [https://github.com/DataBiosphere/terra-axon-examples/tree/main/nextflow](https://github.com/https://github.com/DataBiosphere/terra-axon-examples/tree/main/nextflow).  As mentioned above, its repo, `terra-axon-examples`, will be automatically cloned to your Enterprise Terra Cloud Environment, and you should be able to navigate to the notebook in the JupyterLab file browser.
 - The first example demonstrates running a Nextflow RNASeq workflow on human gut data.
-- The second example demonstrates running the `nf-core` RNASeq pipeline on yeast genome data.
+- The second example demonstrates running the (`nf-core`)[https://nf-co.re/]RNASeq pipeline on yeast genome data.
 
 The examples provided are independent of one another (meaning you can run only the second example if desired, without having to execute the first example).
 
