@@ -17,11 +17,7 @@ This notebook shows how to get started with [Nextflow](https://www.nextflow.io) 
 
 ## Step 1: Preview prior runs of the relevant notebooks.
 
-Previews of this notebook, including outputs, are provided in the "Notebook snapshots" folder found by navigating to this workspace's Resources tab. Click the links listed below to view notebook previews in order to gain a better understanding of the setup and analysis included in this demonstration workspace:
-
-1. [Workspace setup](https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/97ce452a-dd3c-4045-97d3-bc70db429f83/notebook_snapshots/workspace_setup.html)
-2. [Example 1: Run a Nextflow workflow](https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/21ffa484-75b9-46ff-b70d-6ebeb2962eb2/notebook_snapshots/nextflow_examples_first_exercise_fully_executed.html)
-3. [Example 2: Run an `nf-core` workflow](https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/eebc2df6-fc9d-491e-874c-b87dbd3a68e1/notebook_snapshots/nextflow_examples_second_exercise_fully_executed.html)
+Previews of this notebook, including outputs, are provided in the "Notebook snapshots" folder found by navigating to this workspace's Resources tab.
 
 
 ## Step 2: Create an Enterprise Terra Cloud Environment and run a setup notebook.
@@ -47,7 +43,4 @@ The examples provided are independent of one another (meaning you can run only t
 
 ## Step 4: View MultiQC reports produced.
 
-Running either or both examples will result in the creation of a MultiQC report. To preview what reports can be expected to look like, navigate to the workspace resource folder "Report previews" and click to view:
-1. [Example 1 MultiQC report preview](https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/6cce61b8-4dff-4342-934b-243134d91cac/example_results/multiqc_report.html)
-2. [Example 2 MultiQC report preview](https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/27737b7b-4285-4c11-8848-e8ec3ae8f6d0/example_results/nf_core_multiqc_report.html)
-Please note that a warning about Javascript being disabled is expected; instructions in the notebook are provided to address this for the actual reports you produce.
+Running either or both examples will result in the creation of a MultiQC report. To preview what reports can be expected to look like, navigate to the workspace resource folder "Report previews" and click to view the Example 1 MultiQC report preview and Example 2 MultiQC report preview.
