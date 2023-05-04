@@ -8,35 +8,34 @@ The example specifically annotates GWAS results from the paper [*Whole genome se
 
 # How do I get started?
 
-## Step 0: Set up your github SSH key and _Duplicate_ this workspace
+## Step 0: Set up your github SSH key (optional) and _Duplicate_ this workspace
 
-- In the Enterprise Terra UI, click on your profile icon, then click on "My Profile". Copy the public SSH key listed there.
-  Then, [add that key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) to your GitHub account.
-  [This page](https://terra-docs.api.verily.com/docs/how_to_guides/terra_ssh_key_guide/) has more detail.
-
-  This setup allows the `terra-axon-examples` example repo, which you can see listed as a Git repository for the workflow, to be automatically cloned when you create a Cloud Environment.
-  > **Note**: if you do not have a GitHub account, then you can clone the repo manually after you've created the Cloud Environment.
+- (Optional) In the Enterprise Terra UI, click on your profile icon, then click on "My Profile". Copy the public SSH key listed there.
+  Then, [add that key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) to your GitHub account. This is not necessary to run the Dataproc example notebooks, but will allow you to clone private repos from your workspace cloud environments.
+  [This page](https://terra-docs.api.verily.com/docs/how_to_guides/terra_ssh_key_guide/) has more detail on the process.
 
 - Then, *Duplicate* this workspace. You can do that via the 'three-dot' menu in the upper right of the workspace.
-
 
 
 ## Step 1: Preview prior runs of the relevant notebooks.
 
 On the 'Resources' page, navigate to the Enterprise Terra folder "Notebook snapshots" and preview the notebooks you see there in this order to get a deeper understanding of what setup and analysis this demonstration workspace enables:
 1. `workspace_setup.ipynb`
-2. `create_hail_cluster.ipynb`
-3. `annotate_significant_gwas_results_with_gnomad_brief.ipynb`, which was run on a small region of the genome
-4. `annotate_significant_gwas_results_with_gnomad_at_scale.ipynb`, which was run on all autosomes
+2. `cloud_env_setup.ipynb`
+3. `create_hail_cluster.ipynb`
+4. `annotate_significant_gwas_results_with_gnomad_brief.ipynb`, which was run on a small region of the genome
+5. `annotate_significant_gwas_results_with_gnomad_at_scale.ipynb`, which was run on all autosomes
 
 
-## Step 2: Create an Enterprise Terra Cloud Environment and run a setup notebook.
+## Step 2: Create an Enterprise Terra Cloud Environment and run setup notebooks.
 
 Create an Enterprise Terra Cloud environment, by navigating to the "Environments" tab of the workspace. You can use the configuration defaults.
 
-Launch the environment once it's running, and then run the notebook [workspace_setup.ipynb](https://github.com/DataBiosphere/terra-axon-examples/blob/main/workspace_setup.ipynb). Its repo, `terra-axon-examples`, which is defined as a workspace Git repository, should be automatically cloned to your Enterprise Terra Cloud Environments, and you should be able to navigate to the notebook in the JupyterLab file browser. Look for the `terra-axon-examples` subdirectory.
+Launch the environment once it's running, and then run the notebooks [workspace_setup.ipynb](https://github.com/DataBiosphere/terra-axon-examples/blob/main/workspace_setup.ipynb) and [cloud_env_setup.ipynb](https://github.com/DataBiosphere/terra-axon-examples/blob/main/cloud_env_setup.ipynb). You only need to run `workspace_setup.ipynb` once per workspace (it's fine to run it multiple times).  Run `cloud_env_setup.ipynb` for each cloud environment.
 
-> **If you have not set up your ssh key, and do not see the `terra-axon-examples` subdirectory**, first open a Terminal window on the notebook server (under the **File** menu) and run:
+The example repo, `terra-axon-examples`, which is defined as a workspace Git repository, should be automatically cloned to your Enterprise Terra Cloud Environments, and you should be able to navigate to the notebook in the JupyterLab file browser. Look for the `terra-axon-examples` subdirectory.
+
+> **If you do not see the `terra-axon-examples` subdirectory**, first open a Terminal window on the notebook server (under the **File** menu) and run:
 
   ```sh
   git clone https://github.com/DataBiosphere/terra-axon-examples.git
