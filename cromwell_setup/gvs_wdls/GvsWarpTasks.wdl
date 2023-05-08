@@ -64,7 +64,7 @@ task SNPsVariantRecalibratorCreateModel {
         cpu: "2"
         bootDiskSizeGb: 15
         disks: "local-disk " + disk_size + " HDD"
-        preemptible: 1
+        preemptible: 0
         docker: "us.gcr.io/broad-gatk/gatk:4.1.9.0"
     }
 
@@ -132,7 +132,7 @@ task GatherTranches {
         cpu: "2"
         bootDiskSizeGb: 15
         disks: "local-disk " + disk_size + " HDD"
-        preemptible: 1
+        preemptible: 0
         docker: "us.gcr.io/broad-dsde-methods/broad-gatk-snapshots:varstore_d8a72b825eab2d979c8877448c0ca948fd9b34c7_change_to_hwe"
     }
 
@@ -198,7 +198,7 @@ task IndelsVariantRecalibrator {
         memory: "~{machine_mem} GiB"
         cpu: "2"
         disks: "local-disk " + disk_size + " HDD"
-        preemptible: 1
+        preemptible: 0
         docker: "us.gcr.io/broad-gatk/gatk:4.1.9.0"
     }
 

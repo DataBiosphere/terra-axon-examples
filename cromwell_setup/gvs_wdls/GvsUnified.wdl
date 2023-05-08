@@ -35,6 +35,7 @@ workflow GvsUnified {
         Int? load_data_batch_size
         Int? load_data_preemptible_override
         Int? load_data_maxretries_override
+        Int max_sleep_minutes
         # End GvsImportGenomes
 
         # Begin GvsCreateFilterSet
@@ -98,7 +99,8 @@ workflow GvsUnified {
             load_data_gatk_override = gatk_override,
             load_data_batch_size = load_data_batch_size,
             drop_state = drop_state,
-            is_rate_limited_beta_customer = is_beta_user
+            is_rate_limited_beta_customer = is_beta_user,
+            max_sleep_minutes = max_sleep_minutes
     }
 
     call PopulateAltAllele.GvsPopulateAltAllele {
