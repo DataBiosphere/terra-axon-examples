@@ -17,24 +17,18 @@ This notebook shows how to get started with [Nextflow](https://www.nextflow.io) 
 
 ## Step 1: Preview prior runs of the relevant notebooks.
 
-Previews of this notebook, including outputs, are provided in the "Notebook snapshots" folder found by navigating to this workspace's Resources tab. Click the links listed below to view notebook previews in order to gain a better understanding of the setup and analysis included in this demonstration workspace:
-
-1. [Workspace setup](https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/97ce452a-dd3c-4045-97d3-bc70db429f83/notebook_snapshots/workspace_setup.html)
-2. [Example 1: Run a Nextflow workflow](https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/21ffa484-75b9-46ff-b70d-6ebeb2962eb2/notebook_snapshots/nextflow_examples_first_exercise_fully_executed.html)
-3. [Example 2: Run an `nf-core` workflow](https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/eebc2df6-fc9d-491e-874c-b87dbd3a68e1/notebook_snapshots/nextflow_examples_second_exercise_fully_executed.html)
-
+To gain a better understanding of the setup and analysis included in this demonstration workspace, previews of this notebook that include cell outputs are provided. Navigate to your workspace's Resources tab, then select the "Notebook snapshots" folder. To view a notebook snapshot, select a file in said folder and click the "Preview" button.
 
 ## Step 2: Create an Enterprise Terra Cloud Environment and run a setup notebook.
 
 Create an Enterprise Terra Cloud environment, by navigating to the "Environments" tab of the workspace. You can use the configuration defaults.
 
-Launch the environment once it's running, and then run the notebook [workspace_setup.ipynb](https://github.com/DataBiosphere/terra-axon-examples/blob/main/workspace_setup.ipynb). Its repo, `terra-axon-examples`, which is defined as a workspace Git repository, should be automatically cloned to your Enterprise Terra Cloud Environments, and you should be able to navigate to the notebook in the JupyterLab file browser. Look for the `terra-axon-examples` subdirectory.
+Launch the environment once it's running, and then run the notebook [workspace_setup.ipynb](https://github.com/DataBiosphere/terra-axon-examples/blob/main/workspace_setup.ipynb). Its repo, `terra-axon-examples`, which is defined as a workspace Git repository, should be automatically cloned to your Enterprise Terra Cloud Environment, and you should be able to navigate to the notebook in the JupyterLab file browser. Look for the `terra-axon-examples` subdirectory.
 
-> **If you have not set up your ssh key, and do not see the `terra-axon-examples` subdirectory**, first open a Terminal window on the notebook server (under the **File** menu) and run:
-
-  ```sh
+> **If you do not see the `terra-axon-examples` subdirectory**, open a Terminal window on the notebook server (under the **File** menu) and run:
+>  ```sh
   git clone https://github.com/DataBiosphere/terra-axon-examples.git
-  ```
+>  ```
 
 ## Step 3: Run the Nextflow examples.
 

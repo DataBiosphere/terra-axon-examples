@@ -2,5 +2,8 @@
 
 This example shows how to get started with [Nextflow](https://www.nextflow.io) on Enterprise Terra.
 
-- The [nextflow_examples.ipynb](./nextflow_examples.ipynb) notebook shows how to configure Nextflow for in your Terra cloud environment, how to install and run pipelines from [nf-core](https://nf-co.re/rnaseq) workflows, and how to leverage the [Google Life Sciences API](https://cloud.google.com/life-sciences/docs/concepts/introduction) as the workflow process executor.
-- To preview the exercises performed in this notebook, view the notebook snapshots, which include cell ouptuts, for the [first exercise](https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/21ffa484-75b9-46ff-b70d-6ebeb2962eb2/notebook_snapshots/nextflow_examples_first_exercise_fully_executed.html) and the [second exercise](https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/eebc2df6-fc9d-491e-874c-b87dbd3a68e1/notebook_snapshots/nextflow_examples_second_exercise_fully_executed.html). 
+- The [nextflow_examples.ipynb](./nextflow_examples.ipynb) notebook shows 
+    - how to configure Nextflow for in your Terra cloud environment
+    - how to install and run pipelines from [nf-core](https://nf-co.re/rnaseq) workflows, and 
+    - how to leverage the [Google Life Sciences API](https://cloud.google.com/life-sciences/docs/concepts/introduction) as the workflow process executor.
+- Notebook snapshots are available if you'd like to preview the content of this notebook. To view a notebook snapshot, navigate to the "Notebook snapshots" folder in the Resources panel of this workspace. Then select a file and click the "Preview" button.
