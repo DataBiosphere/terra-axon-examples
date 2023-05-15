@@ -25,10 +25,9 @@ Create an Enterprise Terra Cloud environment, by navigating to the "Environments
 
 Launch the environment once it's running, and then run the notebook [workspace_setup.ipynb](https://github.com/DataBiosphere/terra-axon-examples/blob/main/workspace_setup.ipynb). Its repo, `terra-axon-examples`, which is defined as a workspace Git repository, should be automatically cloned to your Enterprise Terra Cloud Environment, and you should be able to navigate to the notebook in the JupyterLab file browser. Look for the `terra-axon-examples` subdirectory.
 
-> **If you do not see the `terra-axon-examples` subdirectory**, open a Terminal window on the notebook server (under the **File** menu) and run:
+**If you do not see the `terra-axon-examples` subdirectory**, open a Terminal window on the notebook server (under the **File** menu) and run:
 >  ```sh
-  git clone https://github.com/DataBiosphere/terra-axon-examples.git
->  ```
+  git clone https://github.com/DataBiosphere/terra-axon-examples.git```
 
 ## Step 3: Run the Nextflow examples.
 
@@ -41,8 +40,8 @@ The examples provided are independent of one another (meaning you can run only t
 
 ## Step 4: View MultiQC reports produced.
 
-Running either or both examples will result in the creation of a MultiQC report. To preview what reports can be expected to look like, navigate to the workspace resource folder "Report previews" and click to view:
-1. [Example 1 MultiQC report preview](https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/6cce61b8-4dff-4342-934b-243134d91cac/example_results/multiqc_report.html)
-2. [Example 2 MultiQC report preview](https://terra-preprod-ui-terra.api.verily.com/workspaces/getting-started-with-workflows-workspace/resources/27737b7b-4285-4c11-8848-e8ec3ae8f6d0/example_results/nf_core_multiqc_report.html)
+Running each example will result in the creation of a MultiQC report. 
+
+To preview what reports can be expected to look like, navigate to your workspace's Resources tab, then select the "Report previews" folder. To view a report, select a file in said folder and click the "Preview" button.
 
 Please note that a warning about Javascript being disabled is expected; instructions in the notebook are provided to address this for the actual reports you produce.
