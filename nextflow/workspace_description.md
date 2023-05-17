@@ -1,15 +1,15 @@
 # Overview
 
-This notebook shows how to get started with [Nextflow](https://www.nextflow.io) on Enterprise Terra.
+This notebook shows how to get started with [Nextflow](https://www.nextflow.io) on Verily Workbench.
 
 # How do I get started?
 
 ## Step 0: _Duplicate_ this workspace
 
-- *Duplicate* this workspace. You can do that via the 'three-dot' menu in the upper right of the workspace. Duplicating this workspace ensures three Git repositories required for these examples will be automatically cloned when you create a Cloud Environment.
+- *Duplicate* this workspace. You can do that via the 'three-dot' menu in the upper right of the workspace. Duplicating this workspace ensures three Git repositories required for these examples will be automatically cloned when you create a [cloud environment](https://terra-docs.api.verily.com/docs/reference/glossary/#cloud-environment).
 
    The required repositories which will be cloned include:
-  1. [`terra-axon-examples` example repo](https://github.com/DataBiosphere/terra-axon-examples): Contains JupyterLab notebook `nextflow_examples.ipynb` which demonstrates how to configure and run Nextflow workflows in Enterprise Terra.
+  1. [`terra-axon-examples` example repo](https://github.com/DataBiosphere/terra-axon-examples): Contains JupyterLab notebook `nextflow_examples.ipynb` which demonstrates how to configure and run Nextflow workflows in Verily Workbench.
   2. [`rnaseq-nf` repo](https://github.com/nextflow-io/rnaseq-nf): Contains a Nextflow RNASeq workflow specification and associated human genomic input data.
   3. [`test-datasets` repo](https://github.com/nf-core/test-datasets): For each workflow in the `nf-core` collection, this repo has a branch with appropriate, workflow-specific test data.
   > **Note**: If you do not have a GitHub account, then you can clone each repo manually after you've created the cloud environment.
@@ -19,7 +19,7 @@ This notebook shows how to get started with [Nextflow](https://www.nextflow.io) 
 
 To gain a better understanding of the setup and analysis included in this demonstration workspace, previews of this notebook that include cell outputs are provided. Navigate to your workspace's Resources tab, then select the "Notebook snapshots" folder. To view a notebook snapshot, select a file in said folder and click the "Preview" button.
 
-## Step 2: Create an Verily Workbench cloud environment and run a setup notebook.
+## Step 2: Create a Verily Workbench cloud environment and run a setup notebook.
 
 Create an Verily Workbench [cloud environment](https://terra-docs.api.verily.com/docs/reference/glossary/#cloud-environment) by navigating to the "Environments" tab of the workspace. You can use the configuration defaults.
 
