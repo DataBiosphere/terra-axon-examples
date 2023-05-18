@@ -6,5 +6,5 @@ The notebooks in this directory show how to perform a number of tasks using Terr
 
 ## Getting started
 
-Run the [working_with_data_collections.ipynb]( https://github.com/DataBiosphere/terra-axon-examples/blob/main/first_hour_on_terra/working_with_data_collections.ipynb) notebook to learn about creating data collections and adding them to your workspaces.
+Run the [working_with_data_collections.ipynb](https://github.com/DataBiosphere/terra-axon-examples/blob/main/first_hour_on_terra/working_with_data_collections.ipynb) notebook to learn about creating data collections and adding them to your workspaces.
 
