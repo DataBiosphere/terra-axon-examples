@@ -13,4 +13,4 @@ New users who engage with this workspace will be exposed to a variety of helpful
 
 ## Feedback
 
-If you have feedback about your experience with the First Hour on Verily Workbench materials, we'd love to hear from you. Please reach out to <a href="mailto:emmarogge@google.com?subject=First Hour on VWB Feedback">Emma Rogge</a> to share your thoughts.
+If you have feedback about your experience with the First Hour on Verily Workbench materials, we'd love to hear from you. Please reach out to <a href="mailto:first-hour-on-vwb-feedback@verily-bvdp.com?subject=First Hour on VWB Feedback">the Verily Workbench team</a> to share your thoughts.
