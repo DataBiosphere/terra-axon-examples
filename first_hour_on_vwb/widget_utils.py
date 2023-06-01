@@ -6,7 +6,7 @@ input_style = {
 }
 
 input_layout = widgets.Layout(
-    width='50%',
+    width='75%',
     align_items='flex-start'
 )
 
@@ -80,7 +80,7 @@ class StyledButton(object):
         self.button = widgets.Button(
                 description=self.description,
                 disabled=False,
-                layout = widgets.Layout(width='50%'),
+                layout = widgets.Layout(width='75%'),
                 display='flex',
                 align_items='stretch',
                 button_style='',
