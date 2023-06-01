@@ -1,5 +1,7 @@
 import json
 import ipywidgets as widgets
+from dataclasses import dataclass,field
+from typing import List
 
 input_style = {
     'description_width':'initial'
@@ -23,11 +25,11 @@ vbox_layout = widgets.Layout(
     width='75%'
 )
 
-def users_table(stdout):
-    """ Create table from JSON string
+def users_table(json_string):
+    """ Create HTML table from JSON string
     """
     html = f"""<table style='margin: 0 auto,text-align: left'>"""
-    json_data = json.loads(stdout)
+    json_data = json.loads(json_string)
     html += "<th>NAME</th>"
     html += "<th>EMAIL</th>"
     html += "<th>MEMBERS</th>"
@@ -41,26 +43,32 @@ def users_table(stdout):
     html += "</table>"
     return html
 
-class TextInputWidget(object):
-    def __init__(self, ph, desc):
-        self.description = desc
-        self.placeholder = ph
-        self.widget = widgets.Text(
+@dataclass
+class TextInputWidget:
+    placeholder: str
+    description: str
+    text_widget: widgets.Text = None
+
+    def __post_init__(self):
+        self.text_widget = widgets.Text(
             placeholder=self.placeholder,
             description=self.description,
             layout=input_layout,
-            style=input_style)
+            style=input_style
+        )
 
     def get(self):
-        return self.widget
+        return self.text_widget
 
-
-class DropdownInputWidget(object):
-    def __init__(self, options, value, description):
-        self.options = options
-        self.value = value
-        self.description = description
-        self.widget = widgets.Dropdown(
+@dataclass
+class DropdownInputWidget:
+    options: List = field(default_factory=lambda:[])
+    value: str = ''
+    description: str = ''
+    dropdown_widget: widgets.Dropdown = None
+        
+    def __post_init__(self):
+        self.dropdown_widget = widgets.Dropdown(
             options=self.options,
             value=self.value,
             disabled=False,
@@ -70,23 +78,27 @@ class DropdownInputWidget(object):
         )
 
     def get(self):
-        return self.widget
+        return self.dropdown_widget
     
-class StyledButton(object):
-    def __init__(self,desc,tooltip,icon):
-        self.description = desc
-        self.tooltip = tooltip
-        self.icon = icon
+@dataclass
+class StyledButton():
+    description: str
+    tooltip: str
+    icon: str
+    button: widgets.Button = None
+    
+    def __post_init__(self):
         self.button = widgets.Button(
-                description=self.description,
-                disabled=False,
-                layout = widgets.Layout(width='75%'),
-                display='flex',
-                align_items='stretch',
-                button_style='',
-                tooltip=self.tooltip,
-                icon=self.icon,
-                style=widgets.ButtonStyle(button_color = '#D8D2EB')
+            description=self.description,
+            disabled=False,
+            layout = widgets.Layout(width='75%'),
+            display='flex',
+            align_items='stretch',
+            button_style='',
+            tooltip=self.tooltip,
+            icon=self.icon,
+            style=widgets.ButtonStyle(button_color = '#D8D2EB')
         )
+    
     def get(self):
         return self.button
