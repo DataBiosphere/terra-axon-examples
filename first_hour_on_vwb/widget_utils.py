@@ -102,3 +102,15 @@ class StyledButton():
     
     def get(self):
         return self.button
+    
+class ShowOptionalCheckbox():
+    def __init__(self):
+        self.checkbox = widgets.Checkbox(
+            False, 
+            description = "Show optional parameters",
+            indent=False,
+            style = {'background':'#D8D2EB','padding':'15px'}
+        )
+        
+    def get(self):
+        return self.checkbox
