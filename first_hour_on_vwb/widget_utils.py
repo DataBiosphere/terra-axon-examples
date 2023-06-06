@@ -25,8 +25,8 @@ vbox_layout = widgets.Layout(
     width='75%'
 )
 
-def users_table(json_string):
-    """ Create HTML table from JSON string
+def list_groups(json_string):
+    """ List all VWB groups in which user is a member in table form.
     """
     html = f"""<table style='margin: 0 auto,text-align: left'>"""
     json_data = json.loads(json_string)
@@ -40,6 +40,20 @@ def users_table(json_string):
         html += f"<td>{row['email']}</td>"
         html += f"<td>{row['numMembers']}</td>"
         html += f"<td>{row['currentUserPolicies'][0]}</td>"
+    html += "</table>"
+    return html
+
+def list_group_members(json_string):
+    """ Create HTML table from JSON string
+    """
+    html = f"""<table style='margin: 0 auto,text-align: left'>"""
+    json_data = json.loads(json_string)
+    html += "<th>EMAIL</th>"
+    html += "<th>POLICIES</th>"
+    for row in json_data:
+        html += "<tr>"
+        html += f"<td>{row['email']}</td>"
+        html += f"<td>{row['policies'][0]}</td>"
     html += "</table>"
     return html
 
@@ -102,3 +116,15 @@ class StyledButton():
     
     def get(self):
         return self.button
+    
+class ShowOptionalCheckbox():
+    def __init__(self):
+        self.checkbox = widgets.Checkbox(
+            False, 
+            description = "Show optional parameters",
+            indent=False,
+            style = {'background':'#D8D2EB','padding':'15px'}
+        )
+        
+    def get(self):
+        return self.checkbox
