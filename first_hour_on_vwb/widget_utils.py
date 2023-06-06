@@ -1,10 +1,10 @@
 import json
 import ipywidgets as widgets
-from dataclasses import dataclass,field
+from dataclasses import dataclass, field
 from typing import List
 
 input_style = {
-    'description_width':'initial'
+    'description_width': 'initial'
 }
 
 input_layout = widgets.Layout(
@@ -13,7 +13,7 @@ input_layout = widgets.Layout(
 )
 
 output_style = {
-    'description_width':'initial',
+    'description_width': 'initial',
 }
 
 vbox_layout = widgets.Layout(
@@ -26,7 +26,7 @@ vbox_layout = widgets.Layout(
 )
 
 def list_groups(json_string):
-    """ List all VWB groups in which user is a member in table form.
+    """ List VWB groups in which user is a member in HTML table form.
     """
     html = f"""<table style='margin: 0 auto,text-align: left'>"""
     json_data = json.loads(json_string)
@@ -44,7 +44,7 @@ def list_groups(json_string):
     return html
 
 def list_group_members(json_string):
-    """ Create HTML table from JSON string
+    """ List members of a VWB group in HTML table form.
     """
     html = f"""<table style='margin: 0 auto,text-align: left'>"""
     json_data = json.loads(json_string)
@@ -59,6 +59,7 @@ def list_group_members(json_string):
 
 @dataclass
 class TextInputWidget:
+    """A styled text widget with layout."""
     placeholder: str
     description: str
     text_widget: widgets.Text = None
@@ -72,15 +73,19 @@ class TextInputWidget:
         )
 
     def get(self):
+        '''Return widget.'''
         return self.text_widget
+
 
 @dataclass
 class DropdownInputWidget:
-    options: List = field(default_factory=lambda:[])
+    """A styled dropdown widget with layout.
+    """
+    options: List = field(default_factory=lambda: [])
     value: str = ''
     description: str = ''
     dropdown_widget: widgets.Dropdown = None
-        
+
     def __post_init__(self):
         self.dropdown_widget = widgets.Dropdown(
             options=self.options,
@@ -92,39 +97,49 @@ class DropdownInputWidget:
         )
 
     def get(self):
+        '''Return widget.'''
         return self.dropdown_widget
-    
+
+
 @dataclass
 class StyledButton():
+    """ A styled button widget with layout.
+    """
     description: str
     tooltip: str
     icon: str
     button: widgets.Button = None
-    
+
     def __post_init__(self):
         self.button = widgets.Button(
             description=self.description,
             disabled=False,
-            layout = widgets.Layout(width='75%'),
+            layout=widgets.Layout(width='75%'),
             display='flex',
             align_items='stretch',
             button_style='',
             tooltip=self.tooltip,
             icon=self.icon,
-            style=widgets.ButtonStyle(button_color = '#D8D2EB')
+            style=widgets.ButtonStyle(button_color='#D8D2EB')
         )
-    
+
     def get(self):
+        '''Return widget.'''
         return self.button
-    
+
+
 class ShowOptionalCheckbox():
+    """ Creates a styled checkbox widget with description.
+    """
+
     def __init__(self):
         self.checkbox = widgets.Checkbox(
-            False, 
-            description = "Show optional parameters",
+            False,
+            description="Show optional parameters",
             indent=False,
-            style = {'background':'#D8D2EB','padding':'15px'}
+            style={'background': '#D8D2EB'}
         )
-        
+
     def get(self):
+        '''Return widget.'''
         return self.checkbox
