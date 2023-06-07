@@ -25,9 +25,8 @@ vbox_layout = widgets.Layout(
     width='75%'
 )
 
-
-def users_table(json_string):
-    """ Create HTML table from JSON string
+def list_groups(json_string):
+    """ List VWB groups in which user is a member in HTML table form.
     """
     html = f"""<table style='margin: 0 auto,text-align: left'>"""
     json_data = json.loads(json_string)
@@ -44,6 +43,19 @@ def users_table(json_string):
     html += "</table>"
     return html
 
+def list_group_members(json_string):
+    """ List members of a VWB group in HTML table form.
+    """
+    html = f"""<table style='margin: 0 auto,text-align: left'>"""
+    json_data = json.loads(json_string)
+    html += "<th>EMAIL</th>"
+    html += "<th>POLICIES</th>"
+    for row in json_data:
+        html += "<tr>"
+        html += f"<td>{row['email']}</td>"
+        html += f"<td>{row['policies'][0]}</td>"
+    html += "</table>"
+    return html
 
 @dataclass
 class TextInputWidget:
