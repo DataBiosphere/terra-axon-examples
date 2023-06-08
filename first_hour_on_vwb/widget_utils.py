@@ -57,6 +57,26 @@ def list_group_members(json_string):
     html += "</table>"
     return html
 
+def list_workspace_ids(json_string):
+    """ Return a list of workspace IDs.
+    """
+    json_data = json.loads(json_string)
+    id_list = []
+    for row in json_data:
+        ws_id = row['id']
+        ws_properties = row['properties']
+        if 'terra-type' in ws_properties:
+            terra_type = ws_properties['terra-type']
+            if terra_type == 'data-collection':
+                continue
+            # Workspaces do not have an explictly set terra-type
+            # but may have user-set properties.
+            else:
+                id_list.append(ws_id)
+        else:
+            id_list.append(ws_id)
+    return id_list
+
 @dataclass
 class TextInputWidget:
     """A styled text widget with layout."""
@@ -127,6 +147,18 @@ class StyledButton():
         '''Return widget.'''
         return self.button
 
+@dataclass
+class WarningWidget():
+    """ A styled label which wraps between words for long strings.
+    """
+    content: str
+    
+    def __post_init__(self):
+        self.warning = widgets.HTML(
+            value= '<style>p{word-wrap: break-word}</style> <p>'+ self.content +' </p>')
+        
+    def get(self):
+        return self.warning
 
 class ShowOptionalCheckbox():
     """ Creates a styled checkbox widget with description.
