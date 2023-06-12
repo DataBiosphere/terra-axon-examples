@@ -58,23 +58,17 @@ def list_group_members(json_string):
     return html
 
 def list_workspace_ids(json_string):
-    """ Return a list of workspace IDs.
-    """
+    """Given the output of the command `terra workspace-list`, returns a list of workspace IDs."""
     json_data = json.loads(json_string)
     id_list = []
     for row in json_data:
         ws_id = row['id']
         ws_properties = row['properties']
-        if 'terra-type' in ws_properties:
-            terra_type = ws_properties['terra-type']
-            if terra_type == 'data-collection':
-                continue
+        if ws_properties.get('terra-type') == 'data-collection':
             # Workspaces do not have an explictly set terra-type
             # but may have user-set properties.
-            else:
-                id_list.append(ws_id)
-        else:
-            id_list.append(ws_id)
+            continue
+        id_list.append(ws_id)
     return id_list
 
 @dataclass
