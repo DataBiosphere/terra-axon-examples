@@ -1,3 +1,4 @@
+from google.cloud import bigquery
 import json
 import ipywidgets as widgets
 from dataclasses import dataclass, field
@@ -57,19 +58,42 @@ def list_group_members(json_string):
     html += "</table>"
     return html
 
-def list_workspace_ids(json_string):
-    """Given the output of the command `terra workspace-list`, returns a list of workspace IDs."""
+def get_schema_html(schema_lst):
+    """ Return an HTML table listing schema fields."""
+    html = f"""<table style='margin: 0 auto,text-align: left'>"""
+    html += "<th>NAME</th>"
+    html += "<th>TYPE</th>"
+    html += "<th>DESCRIPTION</th>"
+    html += "<th>DEFAULT</th>"
+    for s_field in schema_lst:
+        html += "<tr>"
+        html += f"<td>{s_field.name}</td>"
+        html += f"<td>{s_field.field_type}</td>"        
+        html += f"<td>{s_field.description}</td>"  
+        html += f"<td>{s_field.default_value_expression}</td>"
+        html += "</tr>"
+    html += "</table>"
+    return html
+
+def get_tables_in_dataset(dataset_id):
+    # Construct a BigQuery client object.
+    client = bigquery.Client()
+    tables = client.list_tables(dataset_id)
+    print("Tables contained in '{}':".format(dataset_id))
+    for table in tables:
+        print("{}.{}.{}".format(table.project, table.dataset_id, table.table_id))
+    return tables
+
+def list_bq_tables(json_string):
+    """ List BQ resources for current workspace.
+    """
+    bq_resource_names = []
     json_data = json.loads(json_string)
-    id_list = []
     for row in json_data:
-        ws_id = row['id']
-        ws_properties = row['properties']
-        if ws_properties.get('terra-type') == 'data-collection':
-            # Workspaces do not have an explictly set terra-type
-            # but may have user-set properties.
-            continue
-        id_list.append(ws_id)
-    return id_list
+        if row['resourceType'] == 'BQ_TABLE':
+            bq_resource_names.append(row['name'])
+    return bq_resource_names
+        
 
 @dataclass
 class TextInputWidget:
@@ -141,18 +165,6 @@ class StyledButton():
         '''Return widget.'''
         return self.button
 
-@dataclass
-class WarningWidget():
-    """ A styled label which wraps between words for long strings.
-    """
-    content: str
-    
-    def __post_init__(self):
-        self.warning = widgets.HTML(
-            value= '<style>p{word-wrap: break-word}</style> <p>'+ self.content +' </p>')
-        
-    def get(self):
-        return self.warning
 
 class ShowOptionalCheckbox():
     """ Creates a styled checkbox widget with description.
