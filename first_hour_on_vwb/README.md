@@ -7,7 +7,7 @@ New users who engage with this workspace will be exposed to a variety of helpful
 
 ## Getting started
 
-- Run the [working_with_data.ipynb](https://github.com/DataBiosphere/terra-axon-examples/blob/main/first_hour_on_vwb/working_with_data.ipynb) notebook to learn about various options for interacting with BigQuery data from a [data collection](https://support.workbench.verily.com/docs/how_to_guides/work_with_data/#add-a-data-collection) in your workspace.
+- Run the [working_with_bq_resources.ipynb](https://github.com/DataBiosphere/terra-axon-examples/blob/main/first_hour_on_vwb/working_with_bq_resources.ipynb) notebook to learn about various options for interacting with BigQuery data from [referenced resources](https://support.workbench.verily.com/docs/how_to_guides/work_with_data/#add-a-data-reference) in your workspace.
 
 - Run the [working_with_groups.ipynb](https://github.com/DataBiosphere/terra-axon-examples/blob/main/first_hour_on_vwb/working_with_groups.ipynb) notebook to learn about creating and deleting [Workbench groups](https://terra-docs.api.verily.com/docs/reference/glossary/#group) and managing Workbench group membership.
 
