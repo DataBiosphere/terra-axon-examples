@@ -25,6 +25,23 @@ vbox_layout = widgets.Layout(
     width='75%'
 )
 
+def list_bq_tables(json_string):
+    """ Return a list of all BigQuery tables accessible from this workspace, given output of `terra resource list`.
+    """
+    all_tables = []
+    json_data = json.loads(json_string)
+    for row in json_data:
+        if row['resourceType'] == 'BQ_TABLE':
+            all_tables.append(f"{row['projectId']}.{row['datasetId']}.{row['dataTableId']}")
+        elif row['resourceType'] == 'BQ_DATASET':
+            client = bigquery.Client()
+            dataset_id = f"{row['projectId']}.{row['datasetId']}"
+            tables = client.list_tables(dataset_id)  # Make an API request.
+            for table in tables:
+                all_tables.append(f"{row['projectId']}.{row['datasetId']}.{table.table_id}")
+    return all_tables
+    
+
 def list_groups(json_string):
     """ List VWB groups in which user is a member in HTML table form.
     """
@@ -70,6 +87,7 @@ def list_workspace_ids(json_string):
             continue
         id_list.append(ws_id)
     return id_list
+    
 
 @dataclass
 class TextInputWidget:
