@@ -1,5 +1,7 @@
 # Dataproc + Hail on Enterprise Terra
 
+**The examples in this directory are obsolete and will not work with new workspaces**.
+
 This example shows how to get started with Dataproc + Hail on Enterprise Terra.
 
 - The [create_hail_cluster.ipynb](./create_hail_cluster.ipynb) notebook shows how to start up a Dataproc cluster with Hail installed, how to submit batch jobs to the cluster, and how to run an interactive analysis via a JupyterLab server on a cluster node.
