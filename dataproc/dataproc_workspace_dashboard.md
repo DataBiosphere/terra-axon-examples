@@ -1,6 +1,6 @@
 # Overview
 
-This workspace shows how to start a [Dataproc](https://cloud.google.com/dataproc) (managed Spark) cluster, with Hail installed, on Enterprise Terra, and how to submit batch jobs to the cluster as well as how to run an interactive notebook on the Hail cluster.
+This workspace shows how to start a [Dataproc](https://cloud.google.com/dataproc) (managed Spark) cluster, with Hail installed, on Verily Workbench, and how to submit batch jobs to the cluster as well as how to run an interactive notebook on the Hail cluster.
 
 It uses an example that annotates significant GWAS results with gnomAD using [Hail](https://hail.is/).
 
@@ -10,7 +10,7 @@ The example specifically annotates GWAS results from the paper [*Whole genome se
 
 ## Step 0: Set up your github SSH key (optional) and _Duplicate_ this workspace
 
-- (Optional) In the Enterprise Terra UI, click on your profile icon, then click on "My Profile". Copy the public SSH key listed there.
+- (Optional) In the Verily Workbench UI, click on your profile icon, then click on "My Profile". Copy the public SSH key listed there.
   Then, [add that key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) to your GitHub account. This is not necessary to run the Dataproc example notebooks, but will allow you to clone private repos from your workspace cloud environments.
   [This page](https://terra-docs.api.verily.com/docs/how_to_guides/terra_ssh_key_guide/) has more detail on the process.
 
