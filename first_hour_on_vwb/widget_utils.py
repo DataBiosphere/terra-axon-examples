@@ -61,7 +61,8 @@ def list_groups(json_string):
     return html
 
 def list_group_members(json_string):
-    """ List members of a VWB group in HTML table form.
+    """
+    List members of a VWB group in HTML table form.
     """
     html = f"""<table style='margin: 0 auto,text-align: left'>"""
     json_data = json.loads(json_string)
@@ -74,8 +75,25 @@ def list_group_members(json_string):
     html += "</table>"
     return html
 
+def list_data_collections(json_string):
+    """
+    Given the output of the command `terra workspace list`, 
+    returns a list of data collections.
+    """
+    json_data = json.loads(json_string)
+    id_list = []
+    for row in json_data:
+        ws_id = row['id']
+        ws_properties = row['properties']
+        if ws_properties.get('terra-type') == 'data-collection':
+            id_list.append(ws_id)
+    return id_list
+
 def list_workspace_ids(json_string):
-    """Given the output of the command `terra workspace-list`, returns a list of workspace IDs."""
+    """
+    Given the output of the command `terra workspace list`, 
+    returns a list of workspace IDs that are not data collections.
+    """
     json_data = json.loads(json_string)
     id_list = []
     for row in json_data:
@@ -87,7 +105,7 @@ def list_workspace_ids(json_string):
             continue
         id_list.append(ws_id)
     return id_list
-    
+
 
 @dataclass
 class TextInputWidget:
