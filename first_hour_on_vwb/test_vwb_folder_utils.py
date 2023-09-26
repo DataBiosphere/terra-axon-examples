@@ -7,7 +7,7 @@ THOUSAND_GENOMES_CLI_OUTPUT = f"""├── Genomics (de5bf30a-78a6-4686-92e6-68
 └── Clinical (05f362fe-d205-44a3-b5a8-4ad6d242e8ac)
     └── Synthetic Data (d6e9058e-976f-4f51-9352-43abe59657b7)"""
         
-THOUSAND_GENOMES_PARSED_TREE = [{'folder': 'Genomics', 'id': 'de5bf30a-78a6-4686-92e6-687b472b1475', 'children': [{'folder': 'Variant Files', 'id': 'd018eff8-bba1-4d59-b9e0-a7db7ed66422', 'children': []}, {'folder': 'Aligned Files', 'id': 'f6cc00ad-9d66-4644-8543-7c3ced6bd63f', 'children': []}]}, {'folder': 'Clinical', 'id': '05f362fe-d205-44a3-b5a8-4ad6d242e8ac', 'children': []}, {'folder': 'Synthetic Data', 'id': 'd6e9058e-976f-4f51-9352-43abe59657b7', 'children': []}]
+THOUSAND_GENOMES_PARSED_TREE = [{'folder': 'Genomics', 'id': 'de5bf30a-78a6-4686-92e6-687b472b1475', 'depth': 1, 'children': [{'folder': 'Variant Files', 'id': 'd018eff8-bba1-4d59-b9e0-a7db7ed66422', 'depth': 2, 'children': []}, {'folder': 'Aligned Files', 'id': 'f6cc00ad-9d66-4644-8543-7c3ced6bd63f', 'depth': 2, 'children': []}]}, {'folder': 'Clinical', 'id': '05f362fe-d205-44a3-b5a8-4ad6d242e8ac', 'depth': 1, 'children': [{'folder': 'Synthetic Data', 'id': 'd6e9058e-976f-4f51-9352-43abe59657b7', 'depth': 2, 'children': []}]}]
 
 class TestClass:
     
@@ -34,3 +34,5 @@ class TestClass:
         assert synthetic_data_id == vfu.get_folder_id('Synthetic Data', THOUSAND_GENOMES_PARSED_TREE)
         # no such folder exists
         assert None == vfu.get_folder_id("New Folder", THOUSAND_GENOMES_PARSED_TREE)
+        
+    def test_get_versions(self):

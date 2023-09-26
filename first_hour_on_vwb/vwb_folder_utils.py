@@ -5,11 +5,40 @@ import tempfile
   
 
 # Constants for parsing output of CLI command `terra folder tree`.
-FIRST_LINE_REGEX = r"^\├\─\─(.*\))*$"
-LEAF_REGEX = r"^\│(\s*)\├\─\─(.*)$"
-LAST_LEAF_REGEX = r"^\│(\s*)\└\─\─(.*)$"
-LAST_LINE_REGEX = r"^(\s)*\└\─\─(.*)$"
-CLEAN_LINE_TO_YAML_REGEX = r"^(.*)\s\((.*)\)$"
+FIRST_PARENT_REGEX = r"^\├\─\─\s(.+)$"
+LAST_PARENT_REGEX = r"^\└\─\─(.+)$"
+LEAF_REGEX = r"^\│(\s+)\├\─\─(.+)$"
+LAST_LEAF_REGEX = r"^\│(\s+)\└\─\─(.+)$"
+DANGLING_LINE_REGEX = r"^(\s+)\└\─\─(.+)$"
+TOP_LEVEL_CLEAN_LINE_TO_YAML_REGEX = r"^(.*)\s\((.*)\)$|^[\s*](.*)\s\((.*)\)\s*$"
+CLEAN_LINE_TO_YAML_REGEX = r"^(\s+)(.*)\s\((.*)\)\s*$"
+
+class Node:
+    def __init__(self, indented_line):
+        self.children = []
+        self.level = len(indented_line) - len(indented_line.lstrip())
+        self.text = indented_line.strip()
+
+    def add_children(self, nodes):
+        childlevel = nodes[0].level
+        while nodes:
+            node = nodes.pop(0)
+            if node.level == childlevel: # add node as a child
+                self.children.append(node)
+            elif node.level > childlevel: # add nodes as grandchildren of the last child
+                nodes.insert(0,node)
+                self.children[-1].add_children(nodes)
+            elif node.level <= self.level: # this node is a sibling, no more children
+                nodes.insert(0,node)
+                return
+
+    def as_dict(self):
+        if len(self.children) > 1:
+            return {self.text: [node.as_dict() for node in self.children]}
+        elif len(self.children) == 1:
+            return {self.text: self.children[0].as_dict()}
+        else:
+            return self.text
 
 
 def parse_tree(cli_output : str = None):
@@ -29,49 +58,76 @@ def parse_tree(cli_output : str = None):
         cli_output = cli_folder_tree_output.stdout
 
     # 2) Write workspace folder tree to temp file.
-    with cli_output_tree as cli_tree:
+    with open(cli_output_tree.name, "w+") as cli_tree:
         cli_tree.write(cli_output)
         # Rewind to start of file for reading.
         cli_tree.seek(0)
         # Define variables for setting up list of dictionaries as tree.
+        indentation = []
+        indentation.append(0)
         depth = 0
-        root = {"folder": "root", "id": "0", "children": []}
+        root = {"folder": "root", "id": "0", "depth": 0, "children": []}
         parents = []
         node = root
         # 3) Parse file, replacing symbols with tabs.
-        with parsed_tree as output_file:
+        with open(parsed_tree.name, "w+") as output_file:
             for line in cli_tree:
-                line = re.sub(FIRST_LINE_REGEX,r'\1', line)
-                line = re.sub(LAST_LINE_REGEX, r'\1\2', line, re.MULTILINE)
-                line = line.strip()
-                while re.search(LEAF_REGEX, line):
-                    line = re.sub(LEAF_REGEX, r'\t\1\2', line, re.MULTILINE)
-                while re.search(LAST_LEAF_REGEX, line):
-                    line = re.sub(LAST_LEAF_REGEX, r'\t\1\2', line, re.MULTILINE)
-                line += "\n"
-                line = re.sub(CLEAN_LINE_TO_YAML_REGEX,r'\1 : \2',line,re.MULTILINE)
+                # print(f"line: {line}")
+                match_first_parent = re.search(FIRST_PARENT_REGEX,line)
+                if match_first_parent:
+                    line = re.sub(FIRST_PARENT_REGEX, r'\1', line, re.MULTILINE)
+                match_last_parent = re.search(LAST_PARENT_REGEX, line)
+                if match_last_parent:
+                    line = re.sub(LAST_PARENT_REGEX, r'\1', line, re.MULTILINE)
+                    line = line.strip()
+                match_leaf = re.search(LEAF_REGEX, line)
+                if match_leaf:
+                    line = re.sub(LEAF_REGEX, r'\1\2', line, re.MULTILINE)
+                match_last_leaf = re.search(LAST_LEAF_REGEX, line)
+                if match_last_leaf:
+                    line = re.sub(LAST_LEAF_REGEX, r'\1\2', line, re.MULTILINE)
+                match_dangling_line = re.search(DANGLING_LINE_REGEX, line)
+                if match_dangling_line:
+                    line = re.sub(DANGLING_LINE_REGEX, r'\1\2', line, re.MULTILINE)
+                match = re.search(CLEAN_LINE_TO_YAML_REGEX,line)
+                if match:
+                    line = re.sub(CLEAN_LINE_TO_YAML_REGEX,r'\1\2:\3\n',line,re.MULTILINE)
+                else:
+                    line = re.sub(TOP_LEVEL_CLEAN_LINE_TO_YAML_REGEX,r'\1:\2\n',line,re.MULTILINE)
+                print(f"line: {line}")
                 output_file.write(line)
             # Rewind temp file to beginning before parsing.
-            parsed_tree.seek(0)
+            output_file.seek(0)
             # 4) Parse text tree into list of dictionaries.
-            for line in parsed_tree:
-                folder_name, folder_id = line.split(' : ')
-                line = line.rstrip()
-                newDepth = len(line) - len(line.lstrip("\t")) + 1
-                if newDepth < depth:
-                    parents = parents[:newDepth]
-                elif newDepth == depth + 1:
+            lines = [line.rstrip() for line in output_file.readlines()]
+            non_empty_lines = [line for line in lines if line != '']
+            for line in non_empty_lines:
+                # line = line[:-1]
+                content = line.lstrip()
+                currentIndentation = len(line) - len(content) + 1
+                folder_name, folder_id = content.split(':')
+
+                # If new line's indentation is shallower than previous, we need to remove items from the list
+                if currentIndentation < indentation[-1]:
+                    while currentIndentation < indentation[-1]:
+                        depth -= 1
+                        indentation.pop()
+                    if currentIndentation != indentation[-1]:
+                        raise RuntimeError("Bad formatting")
+                    parents = parents[:depth]
+                # If new line's indentation is deeper, we need to add the previous node
+                elif currentIndentation > indentation[-1]:
+                    depth += 1
+                    indentation.append(currentIndentation)
                     parents.append(node)
-                elif newDepth > depth + 1:
-                    raise Exception("Invalid file")
-                depth = newDepth
-                node = {"folder": folder_name.strip(), "id": folder_id.strip(), "children": []}         
-                # add the new node into its parent's children
-                parents[-1]["children"].append(node)
+                # Create new node
+                node = {"folder": folder_name.strip(), "id": folder_id.strip(), "depth" : depth, "children": []}
+                parents[-1]['children'].append(node)
         # 5) Close temporary files & return list of dictionaries.
+        print(root["children"])
         parsed_tree.close()
         cli_tree.close()
-        return root["children"]
+        return(root["children"])
 
 
 def get_folder_id(name: str, tree: [] = None):
@@ -88,3 +144,35 @@ def get_folder_id(name: str, tree: [] = None):
         if folder_id_from_children is not None:
             return folder_id_from_children
     return None
+
+def get_folders_with_depth(workspace_id: str, depth: int):
+    """
+    Given the workspace ID of a data collection, and a desired depth ( >= 1),
+    returns a list of folders in the workspace with that depth.
+    """
+    # 1) Get workspace folder tree, if not provided.
+    cli_folder_tree_output = subprocess.run(
+        ["terra", "folder", "tree", f"--workspace={workspace_id}"], capture_output=True, text=True
+    )
+    cli_output = cli_folder_tree_output.stdout
+    print(f"cli_output:\n{cli_output}")
+    
+    # 2) Parse tree to list of dictionaries.
+    tree = parse_tree(cli_output)
+    folders_at_depth = []
+    for item in tree:
+        if item['depth'] == depth:
+            folders_at_depth.append(item['folder'].strip())
+    # 3) Return list of versions.
+    return folders_at_depth
+
+def get_potential_versions(workspace_id: str):
+    """
+    Given a workspace ID, returns the top-level folders for that directory 
+    which are eligible for publication as a data collection version.
+    """
+    return get_folders_with_depth(workspace_id, depth = 1)
+
+if __name__ == "__main__": 
+    get_versions_test = get_versions('emmarogge-ws')
+    print(f"Versions:\n{get_versions_test}")
