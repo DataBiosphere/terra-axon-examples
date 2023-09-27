@@ -13,34 +13,6 @@ DANGLING_LINE_REGEX = r"^(\s+)\└\─\─(.+)$"
 TOP_LEVEL_CLEAN_LINE_TO_YAML_REGEX = r"^(.*)\s\((.*)\)$|^[\s*](.*)\s\((.*)\)\s*$"
 CLEAN_LINE_TO_YAML_REGEX = r"^(\s+)(.*)\s\((.*)\)\s*$"
 
-class Node:
-    def __init__(self, indented_line):
-        self.children = []
-        self.level = len(indented_line) - len(indented_line.lstrip())
-        self.text = indented_line.strip()
-
-    def add_children(self, nodes):
-        childlevel = nodes[0].level
-        while nodes:
-            node = nodes.pop(0)
-            if node.level == childlevel: # add node as a child
-                self.children.append(node)
-            elif node.level > childlevel: # add nodes as grandchildren of the last child
-                nodes.insert(0,node)
-                self.children[-1].add_children(nodes)
-            elif node.level <= self.level: # this node is a sibling, no more children
-                nodes.insert(0,node)
-                return
-
-    def as_dict(self):
-        if len(self.children) > 1:
-            return {self.text: [node.as_dict() for node in self.children]}
-        elif len(self.children) == 1:
-            return {self.text: self.children[0].as_dict()}
-        else:
-            return self.text
-
-
 def parse_tree(cli_output : str = None):
     """
     Returns a representation of the workspace folder tree in the form of a list of dictionaries.
@@ -172,7 +144,3 @@ def get_potential_versions(workspace_id: str):
     which are eligible for publication as a data collection version.
     """
     return get_folders_with_depth(workspace_id, depth = 1)
-
-if __name__ == "__main__": 
-    get_versions_test = get_versions('emmarogge-ws')
-    print(f"Versions:\n{get_versions_test}")
