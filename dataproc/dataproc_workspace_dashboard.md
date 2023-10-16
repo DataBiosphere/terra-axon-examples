@@ -59,7 +59,7 @@ With notebook `annotate_significant_gwas_results_with_gnomad.ipynb`, you can als
 
 ## Step 4: Submit a batch job
 
-Once your cluster is created, you can submit a batch job to the cluster from any environment where `gcloud` is installed and configured— e.g., from the on-cluster JupyterLab server, or from a Workbench notebook cloud environment. (You can also run it from your local machine). The the [`batch_job_submit.ipynb`](./batch_job_submit.ipynb) notebook describes how to do this.
+After your cluster is created, you can submit a batch job to the cluster from any environment where [`gcloud`](https://cloud.google.com/sdk/docs/install) is installed and configured— e.g., from the on-cluster JupyterLab server, or from a Workbench notebook cloud environment. (You can also submit batch jobs from the [Cloud Console](https://console.cloud.google.com/dataproc/jobs) or install `gcloud` on your local machine). The the [`batch_job_submit.ipynb`](./batch_job_submit.ipynb) notebook describes how to do this.
 
 From a workbench Cloud Environment, navigate to the `repos/terra-axon-examples/dataproc` subdirectory.
 Run the [`batch_job_submit.ipynb`](./batch_job_submit.ipynb) notebook.  It will walk you through the process of creating a batch script and submitting it to the cluster.
