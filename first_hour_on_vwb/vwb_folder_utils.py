@@ -21,7 +21,6 @@ def get_folder_id(name: str, tree: []):
     returns a folder's ID if it exist, else None.
     """
     for item in tree:
-        print(f"item: {item}")
         current_name = item['name'].strip()
         if current_name == name:
             return item['id']
