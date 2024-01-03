@@ -24,7 +24,7 @@ These notebooks run best in an environment with **at least 1 GPU** attached.
 To run the examples, create a custom-container-based notebook environment using this image:
 `gcr.io/terra-vdevel-cutting-date-7064/ml4h:v2`, which is built from the `Dockerfile` in this
 directory. If you prefer, you can create your own image from the Dockerfile instead.
-When you create the notebook eenvironment, use 1 GPU (e.g., a V100).
+When you create the notebook environment, use 1 GPU (e.g., a V100).
 
 Alternately, you can try running the `ml4h_setup.ipynb` notebook from a Tensorflow notebook
 environment. (This installs `ml4h` via `pip` rather than directly from its repo, and has other
