@@ -1,4 +1,6 @@
 
+# ML4H example notebooks
+
 This directory holds some examples of using the [ml4h](https://github.com/broadinstitute/ml4h)
 toolkit on a Verily Workbench notebook environment, along with a Dockerfile that can be used to
 build a custom container for the notebook env.
@@ -25,8 +27,9 @@ directory. If you prefer, you can create your own image from the Dockerfile inst
 When you create the notebook eenvironment, use 1 GPU (e.g., a V100).
 
 Alternately, you can try running the `ml4h_setup.ipynb` notebook from a Tensorflow notebook
-environment. (This installs `ml4h` via `pip` rather than directly from its repo).
+environment. (This installs `ml4h` via `pip` rather than directly from its repo, and has other
+config differences).
 
-**Troubleshooting tip**: If you see GPU-related or ML framework-related errors running a notebook after having run another
-previously, **try shutting down all the other notebook kernels** and trying again, to make sure no other
-process has grabbed the GPU.
+**Troubleshooting tip**: If you see GPU-related or ML framework-related errors running a notebook
+after having run another previously, **try shutting down all the other notebook kernels** and trying
+again, to make sure no other process has grabbed the GPU.

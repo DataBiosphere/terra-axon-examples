@@ -16,15 +16,13 @@ RUN pip install -e .
 
 WORKDIR ..
 
-RUN pip install altair pydicom nibabel biosppy
+RUN pip install altair pydicom nibabel biosppy vega
 RUN pip install jupyterlab-pygments==0.2.2 jupyterlab-git==0.41.0  jupyter-server-proxy
 RUN pip install ipympl
 
 RUN pip install tensorflow-text==2.11.0
 RUN pip install opencv-python==4.8.1.78 opencv-python-headless==4.8.1.78
 RUN pip install --upgrade protobuf==3.20
-
-RUN pip install vega
 
 RUN conda install -c anaconda graphviz -y
 RUN conda install nb_conda_kernels
