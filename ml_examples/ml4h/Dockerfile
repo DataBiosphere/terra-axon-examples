@@ -26,8 +26,8 @@ RUN pip install --upgrade protobuf==3.20
 
 RUN conda install -c anaconda graphviz -y
 RUN conda install nb_conda_kernels
-RUN pip install nodejs plotly==5.15.0 jupytext==1.3.9
-RUN pip install nbdime==2.2.0
+RUN pip install nodejs plotly==5.15.0 jupytext==1.14.6
+RUN pip install nbdime==3.2.0
 
 RUN pip install -U ipywidgets
 RUN pip install -U pyviz_comms==2.3.2
