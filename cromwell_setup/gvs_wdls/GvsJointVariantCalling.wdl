@@ -13,10 +13,6 @@ workflow GvsJointVariantCalling {
         String? extract_output_gcs_dir
         String drop_state = "FORTY"
         Boolean is_beta_user = true
-        Int load_data_batch_size = 20000
-        Int max_sleep_minutes = 1
-        Int? INDEL_VQSR_mem_gb_override
-        Int? SNP_VQSR_mem_gb_override
     }
 
     # the call_set_identifier string is used to name many different things throughout this workflow (BQ tables, vcfs etc),
@@ -28,6 +24,7 @@ workflow GvsJointVariantCalling {
       Int extract_maxretries_override = ""
       Int extract_preemptible_override = ""
       Int extract_scatter_count = ""
+      Int load_data_batch_size = ""
       Int load_data_preemptible_override = ""
       Int load_data_maxretries_override = ""
       Array[String] query_labels = []
@@ -35,7 +32,9 @@ workflow GvsJointVariantCalling {
       Int split_intervals_disk_size_override = ""
       Int split_intervals_mem_override = ""
       Int INDEL_VQSR_max_gaussians_override = 4
+      Int INDEL_VQSR_mem_gb_override = ""
       Int SNP_VQSR_max_gaussians_override = 6
+      Int SNP_VQSR_mem_gb_override = ""
     }
     # This is the most updated snapshot of the code as of Feb 10, 2023
     # File gatk_override = "gs://gvs_quickstart_storage/jars/20230210/gatk-package-4.2.0.0-648-g69ad63b-SNAPSHOT-local.jar"
@@ -82,8 +81,7 @@ workflow GvsJointVariantCalling {
             SNP_VQSR_max_gaussians_override = SNP_VQSR_max_gaussians_override,
             SNP_VQSR_mem_gb_override = SNP_VQSR_mem_gb_override,
             drop_state = drop_state,
-            is_beta_user = is_beta_user,
-            max_sleep_minutes=max_sleep_minutes
+            is_beta_user = is_beta_user
     }
 
     output {
