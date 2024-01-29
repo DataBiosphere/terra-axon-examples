@@ -5,10 +5,10 @@
 
 This workspace collects several example notebooks that use the 1000 Genomes public dataset.
 
-To run the examples, **first Duplicate this workspace**.  You can do this via the 'three-dot' menu
+To run the examples, **first duplicate this workspace**.  You can do this via the 'three-dot' menu
 next to the 'Share' button at the top right in the Workbench UI.
 
-Then, in your new workspace, create a JupyterLab R-based cloud environment.  You can take the defaults for
+Then, in your new workspace, create a JupyterLab R-based cloud environment.  You can accept the defaults for
 machine size and number of CPUs. No GPUs are necessary.
 
 Click the link to open the JupyterLab server once the cloud environment is up and running. In the
@@ -37,7 +37,7 @@ http://bwlewis.github.io/1000_genomes_examples/PCA.html  \
 https://github.com/bwlewis/1000_genomes_examples
 
 This example walks through the computation of principal components (PCA) of genomic variant data
-across one chromosome from 2,504 people from the [1000 genomes
+across one chromosome from 2,504 people from the [1000 Genomes
 project](https://www.internationalgenome.org/1000-genomes-summary/). The example projects all of the
 variant data for one chromosome into a three-dimensional subspace, and then plots the result.
 
@@ -48,7 +48,7 @@ The example uses:
 - the `threejs` package to visualize the result.
 
 This example is intended to be run in a Verily Workbench notebook cloud environment ('Jupyterlab
-Vertex AI Workbench instance'), using the R environment image.  You can take the defaults when
+Vertex AI Workbench instance'), using the R environment image.  You can accept the defaults when
 creating the notebook environment, though some compute-heavy aspects of the analysis will run more
 quickly with additional cores.
 
