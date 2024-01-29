@@ -26,7 +26,7 @@ vbox_layout = widgets.Layout(
 )
 
 def list_bq_tables(json_string):
-    """ Return a list of all BigQuery tables accessible from this workspace, given output of `terra resource list`.
+    """ Return a list of all BigQuery tables accessible from this workspace, given output of `wb resource list`.
     """
     all_tables = []
     json_data = json.loads(json_string)
@@ -77,7 +77,7 @@ def list_group_members(json_string):
 
 def list_data_collections(json_string):
     """
-    Given the output of the command `terra workspace list`, 
+    Given the output of the command `wb workspace list`, 
     returns a list of data collections.
     """
     json_data = json.loads(json_string)
@@ -85,13 +85,13 @@ def list_data_collections(json_string):
     for row in json_data:
         ws_id = row['id']
         ws_properties = row['properties']
-        if ws_properties.get('terra-type') == 'data-collection':
+        if ws_properties.get('wb-type') == 'data-collection':
             id_list.append(ws_id)
     return id_list
 
 def list_workspace_ids(json_string):
     """
-    Given the output of the command `terra workspace list`, 
+    Given the output of the command `wb workspace list`, 
     returns a list of workspace IDs that are not data collections.
     """
     json_data = json.loads(json_string)
