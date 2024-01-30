@@ -29,7 +29,6 @@ workflow GvsImportGenomes {
     Int? load_data_preemptible_override
     Int? load_data_maxretries_override
     File? load_data_gatk_override
-    Int max_sleep_minutes
   }
 
   Int num_samples = length(external_sample_names)
@@ -124,8 +123,7 @@ workflow GvsImportGenomes {
         load_data_preemptible = effective_load_data_preemptible,
         load_data_maxretries = effective_load_data_maxretries,
         sample_names = read_lines(CreateFOFNs.vcf_sample_name_fofns[i]),
-        sample_map = GetUningestedSampleIds.sample_map,
-        max_sleep_minutes = max_sleep_minutes
+        sample_map = GetUningestedSampleIds.sample_map
     }
   }
 
@@ -195,7 +193,6 @@ task LoadData {
     File? gatk_override
     Int load_data_preemptible
     Int load_data_maxretries
-    Int max_sleep_minutes
   }
 
   Boolean load_ref_ranges = true
@@ -228,11 +225,6 @@ task LoadData {
     VCFS_ARRAY=(~{sep=" " input_vcfs})
     VCF_INDEXES_ARRAY=(~{sep=" " input_vcf_indexes})
     SAMPLE_NAMES_ARRAY=(~{sep=" " sample_names})
-    
-     # Sleep between 0-max minutes (chosen randomly)
-     SLEEP_TIME=$(( $RANDOM % ${max_sleep_minutes} ))
-     echo "Sleeping for ${SLEEP_TIME} minutes"
-     sleep "${SLEEP_TIME}m"
 
     # loop over the BASH arrays (See https://stackoverflow.com/questions/6723426/looping-over-arrays-printing-both-index-and-value)
     for i in "${!VCFS_ARRAY[@]}"; do
